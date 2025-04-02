@@ -98,4 +98,15 @@ dependencies {
     implementation(libs.androidx.exifinterface)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.window)
+
+    // QR reading
+    implementation(libs.barcode.scanning)
+
+    // XML Parser
+    implementation(libs.simple.xml)
+    implementation(libs.junit)
+
+    // ARCore/Sceneview
+    implementation(libs.obj)
+    implementation(libs.arsceneview)
 }

@@ -1,4 +1,9 @@
 [versions]
+arsceneview = "2.0.4" # 2.1.0 available but was crashing with destroy calls (https://github.com/SceneView/sceneview-android/issues/450); they seem to be working on it (https://github.com/SceneView/sceneview-android/commit/b1bc405cd33ca6c682d21e28e23bd3d08c069a6d)
+barcodeScanning = "17.3.0"
+junit = "4.13.2"
+obj = "0.4.0"
+simpleXml = "2.7.1"
 #jetbrains
 kotlin = "1.9.0"
 #Androidx
@@ -22,7 +27,14 @@ app-build-kotlinJVMTarget = "17"
 app-version-appId = "com.simplemobiletools.camera"
 app-version-versionCode = "89"
 app-version-versionName = "5.7.2"
+
+
 [libraries]
+arsceneview = { module = "io.github.sceneview:arsceneview", version.ref = "arsceneview" }
+barcode-scanning = { module = "com.google.mlkit:barcode-scanning", version.ref = "barcodeScanning" }
+junit = { module = "junit:junit", version.ref = "junit" }
+obj = { module = "de.javagl:obj", version.ref = "obj" }
+simple-xml = { module = "org.simpleframework:simple-xml", version.ref = "simpleXml" }
 #Android X
 androidx-camera-core = { module = "androidx.camera:camera-core", version.ref = "androidx-camera" }
 androidx-camera-camera2 = { module = "androidx.camera:camera-camera2", version.ref = "androidx-camera" }
@@ -36,6 +48,8 @@ androidx-exifinterface = { module = "androidx.exifinterface:exifinterface", vers
 androidx-documentfile = { module = "androidx.documentfile:documentfile", version.ref = "androidx-document-file" }
 #Simple Mobile Tools
 simple-tools-commons = { module = "com.github.SimpleMobileTools:Simple-Commons", version.ref = "simple-commons" }
+
+
 [bundles]
 androidx-camera = [
     "androidx-camera-core",
@@ -45,6 +59,8 @@ androidx-camera = [
     "androidx-camera-lifecycle",
     "androidx-camera-view"
 ]
+
+
 [plugins]
 android = { id = "com.android.application", version.ref = "gradlePlugins-agp" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
