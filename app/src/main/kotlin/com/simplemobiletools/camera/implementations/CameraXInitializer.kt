@@ -5,6 +5,7 @@ import androidx.camera.view.PreviewView
 import com.simplemobiletools.camera.helpers.CameraErrorHandler
 import com.simplemobiletools.camera.helpers.MediaOutputHelper
 import com.simplemobiletools.camera.helpers.MediaSoundHelper
+import com.simplemobiletools.camera.views.QRBoxView
 import com.simplemobiletools.commons.activities.BaseSimpleActivity
 
 class CameraXInitializer(private val activity: BaseSimpleActivity) {
@@ -16,6 +17,7 @@ class CameraXInitializer(private val activity: BaseSimpleActivity) {
         outputUri: Uri?,
         isThirdPartyIntent: Boolean,
         initInPhotoMode: Boolean,
+        mQRBoxView: QRBoxView
     ): CameraXPreview {
         val cameraErrorHandler = newCameraErrorHandler()
         val mediaOutputHelper = newMediaOutputHelper(cameraErrorHandler, outputUri, isThirdPartyIntent)
@@ -28,6 +30,7 @@ class CameraXInitializer(private val activity: BaseSimpleActivity) {
             listener,
             isThirdPartyIntent = isThirdPartyIntent,
             initInPhotoMode = initInPhotoMode,
+            mQRBoxView = mQRBoxView
         )
     }
 

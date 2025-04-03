@@ -38,6 +38,7 @@ import com.simplemobiletools.camera.interfaces.MyPreview
 import com.simplemobiletools.camera.models.ResolutionOption
 import com.simplemobiletools.camera.models.TimerMode
 import com.simplemobiletools.camera.views.FocusCircleView
+import com.simplemobiletools.camera.views.QRBoxView
 import com.simplemobiletools.commons.extensions.*
 import com.simplemobiletools.commons.helpers.*
 import com.simplemobiletools.commons.models.Release
@@ -60,6 +61,7 @@ class MainActivity : SimpleActivity(), PhotoProcessor.MediaSavedListener, Camera
     private lateinit var timerScene: Scene
     private lateinit var mOrientationEventListener: OrientationEventListener
     private lateinit var mFocusCircleView: FocusCircleView
+    private lateinit var mQRBoxView : QRBoxView
     private lateinit var mediaSoundHelper: MediaSoundHelper
     private var mPreview: MyPreview? = null
     private var mediaSizeToggleGroup: MaterialButtonToggleGroup? = null
@@ -323,6 +325,11 @@ class MainActivity : SimpleActivity(), PhotoProcessor.MediaSavedListener, Camera
             selectVideoTab()
         }
 
+        mQRBoxView = QRBoxView(this).apply {
+            id = View.generateViewId()
+        }
+        binding.viewHolder.addView(mQRBoxView)
+
         val outputUri = intent.extras?.get(MediaStore.EXTRA_OUTPUT) as? Uri
         val isThirdPartyIntent = isThirdPartyIntent()
         mPreview = CameraXInitializer(this).createCameraXPreview(
@@ -332,6 +339,7 @@ class MainActivity : SimpleActivity(), PhotoProcessor.MediaSavedListener, Camera
             outputUri = outputUri,
             isThirdPartyIntent = isThirdPartyIntent,
             initInPhotoMode = isInPhotoMode,
+            mQRBoxView = mQRBoxView
         )
 
         mFocusCircleView = FocusCircleView(this).apply {
@@ -950,6 +958,12 @@ class MainActivity : SimpleActivity(), PhotoProcessor.MediaSavedListener, Camera
             add(Release(46, R.string.release_46))
             add(Release(52, R.string.release_52))
             checkWhatsNew(this, BuildConfig.VERSION_CODE)
+        }
+    }
+
+    private fun launchARActivity() {
+        Intent(applicationContext, SceneviewActivity::class.java).also {
+            startActivity(it)
         }
     }
 }
