@@ -303,6 +303,35 @@
 
                 </RelativeLayout>
             </LinearLayout>
+
+            <include
+                android:id="@+id/settings_saving_divider"
+                layout="@layout/divider" />
+
+            <TextView
+                android:id="@+id/settings_ar_label"
+                style="@style/SettingsSectionLabelStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ar_label" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/settings_ar_force_button_holder"
+                style="@style/SettingsHolderTextViewOneLinerStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.simplemobiletools.commons.views.MyTextView
+                    android:id="@+id/settings_ar_force_button"
+                    style="@style/SettingsTextLabelStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ar_force_mode"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

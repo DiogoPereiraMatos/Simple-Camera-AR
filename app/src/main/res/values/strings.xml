@@ -53,6 +53,12 @@
     <string name="save_photo_video_location">Save photo and video location</string>
     <string name="photo_compression_quality">Photo compression quality</string>
     <string name="shutter">Shutter</string>
+
+    <string name="ar_label" translatable="false">AR</string>
+    <string name="ar_force_mode" translatable="false">Force AR mode</string>
+    <string name="ar_refresh" translatable="false">Refresh</string>
+    <string name="ar_instruction_text" translatable="false">Point your phone down...</string>
+    <string name="ar_arml" translatable="false">ARML</string>
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

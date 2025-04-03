@@ -1,7 +1,12 @@
 package com.simplemobiletools.camera.activities
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
+import com.google.ar.core.ArCoreApk
 import com.simplemobiletools.camera.BuildConfig
 import com.simplemobiletools.camera.R
 import com.simplemobiletools.camera.databinding.ActivitySettingsBinding
@@ -17,6 +22,7 @@ import java.util.*
 import kotlin.system.exitProcess
 
 class SettingsActivity : SimpleActivity() {
+    private var userRequestedInstall: Boolean = true
     private val binding by viewBinding(ActivitySettingsBinding::inflate)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,6 +54,7 @@ class SettingsActivity : SimpleActivity() {
         setupSavePhotosFolder()
         setupPhotoQuality()
         setupCaptureMode()
+        setupAR()
         updateTextColors(binding.settingsHolder)
 
         val properPrimaryColor = getProperPrimaryColor()
@@ -262,5 +269,54 @@ class SettingsActivity : SimpleActivity() {
 
     private fun updateCaptureMode(captureMode: CaptureMode) {
         binding.settingsCaptureMode.text = getString(captureMode.stringResId)
+    }
+
+    private fun setupAR() = binding.apply {
+        settingsArForceButtonHolder.beGoneIf(ArCoreApk.getInstance().checkAvailability(applicationContext).isUnsupported)
+
+        listOf(settingsArForceButton, settingsArLabel).forEach {
+            it.beGoneIf(settingsArForceButtonHolder.isGone())
+        }
+
+        settingsArForceButtonHolder.setOnClickListener {
+            tryInstallARCore()
+            launchARActivity()
+        }
+    }
+
+    private fun tryInstallARCore(): Boolean {
+        try {
+            when (ArCoreApk.getInstance().requestInstall(this, userRequestedInstall)) {
+                ArCoreApk.InstallStatus.INSTALLED -> {
+                    // Success: Safe to create the AR session.
+                    Log.d("ARML", "ARCore installed.")
+                    return true
+                }
+                ArCoreApk.InstallStatus.INSTALL_REQUESTED -> {
+                    // When this method returns `INSTALL_REQUESTED`:
+                    // 1. ARCore pauses this activity.
+                    // 2. ARCore prompts the user to install or update Google Play
+                    //    Services for AR (market://details?id=com.google.ar.core).
+                    // 3. ARCore downloads the latest device profile data.
+                    // 4. ARCore resumes this activity. The next invocation of
+                    //    requestInstall() will either return `INSTALLED` or throw an
+                    //    exception if the installation or update did not succeed.
+                    Log.d("ARML", "Installing ARCore...")
+                    userRequestedInstall = false
+                    return false
+                }
+            }
+        } catch (e: Exception) {
+            // Display an appropriate message to the user and return gracefully.
+            Toast.makeText(this, "Failed to download required resources. Try again.", Toast.LENGTH_LONG).show()
+            Log.d("ARML", "Failed to download required resources. $e")
+            return false
+        }
+    }
+
+    private fun launchARActivity() {
+        Intent(applicationContext, SceneviewActivity::class.java).also {
+            startActivity(it)
+        }
     }
 }
