@@ -1,0 +1,37 @@
+
+<arml xmlns="http://www.opengis.net/arml/2.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<ARElements>
+
+		<Feature id="earthFeature">
+			<anchors>
+				<Trackable id="centreAnchor">
+					<config>
+						<tracker xlink:href="#genericImageTracker" />
+						<src>images/trackable/earth.jpg</src>
+					</config>
+					<assets>
+					</assets>
+				</Trackable>
+
+				<RelativeTo id="modelAnchor">
+					<ref xlink:href="centreAnchor" />
+					<gml:Point id="modelOffset" srsDimension="3">
+						<gml:pos>
+							0 0.1 0
+						</gml:pos>
+					</gml:Point>
+					<assets>
+						<Model id="earthModel">
+							<href xlink:href="models/Earth/Earth.gltf" />
+							<Scale>
+								<x>0.05</x>
+								<y>0.05</y>
+								<z>0.05</z>
+							</Scale>
+						</Model>
+					</assets>
+				</RelativeTo>
+			</anchors>
+		</Feature>
+	</ARElements>
+</arml>

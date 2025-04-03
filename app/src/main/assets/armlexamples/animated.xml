@@ -1,0 +1,28 @@
+
+<arml xmlns="http://www.opengis.net/arml/2.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<ARElements>
+
+		<Feature id="animatedFeature">
+			<anchors>
+
+				<Trackable id="centreAnchor">
+					<config>
+						<tracker xlink:href="#genericHUPlaneTracker" />
+						<src>look for a plane, idk</src>
+					</config>
+					<assets>
+						<Model id="animatedModel">
+							<href xlink:href="models/misc/halloween.glb" />
+							<Scale>
+								<x>0.5</x>
+								<y>0.5</y>
+								<z>0.5</z>
+							</Scale>
+						</Model>
+					</assets>
+				</Trackable>
+
+			</anchors>
+		</Feature>
+	</ARElements>
+</arml>

@@ -1,0 +1,34 @@
+
+<arml xmlns="http://www.opengis.net/arml/2.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<ARElements>
+
+		<Feature id="2DFeature">
+			<anchors>
+
+				<Trackable>
+					<config>
+						<tracker xlink:href="#genericVPlaneTracker" />
+						<src>look for a plane, idk</src>
+					</config>
+					<assets>
+						<Image>
+							<href xlink:href="images/maxwell.jpg" />
+							<height>0.5</height>
+							<width>0.5</width>
+
+							<Orientation>
+								<!--
+								<heading>90</heading>
+								<roll>90</roll>
+								-->
+								<tilt>-90</tilt>
+							</Orientation>
+						</Image>
+					</assets>
+				</Trackable>
+
+			</anchors>
+		</Feature>
+
+	</ARElements>
+</arml>
